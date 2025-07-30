@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+
+  /* WP AI Manager specific colors */
+  --wp-blue: hsl(207, 90%, 54%);
+  --wp-blue-dark: hsl(207, 90%, 45%);
+  --wp-gray: hsl(215, 16%, 17%);
+  --wp-gray-light: hsl(215, 20%, 95%);
+  --success-green: hsl(142, 76%, 36%);
+  --warning-amber: hsl(38, 92%, 50%);
+  --error-red: hsl(0, 84%, 60%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Smooth scrolling for chat messages */
+  .chat-messages {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(60, 4.8%, 95.9%);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(25, 5.3%, 44.7%);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(20, 14.3%, 4.1%);
+  }
+
+  /* WordPress specific styling */
+  .wp-gradient {
+    background: linear-gradient(135deg, var(--wp-blue), var(--wp-blue-dark));
+  }
+
+  .status-indicator {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-online {
+    background-color: var(--success-green);
+  }
+
+  .status-offline {
+    background-color: var(--error-red);
+  }
+
+  .status-warning {
+    background-color: var(--warning-amber);
+  }
+
+  /* Message styling */
+  .message-user {
+    @apply bg-blue-500 text-white rounded-lg p-4 ml-auto max-w-2xl;
+  }
+
+  .message-assistant {
+    @apply bg-slate-100 rounded-lg p-4 max-w-2xl;
+  }
+
+  /* Animation classes */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  .slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .bounce-in {
+    animation: bounceIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Loading animation */
+  .loading-dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .loading-dots > div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: hsl(25, 5.3%, 44.7%);
+    animation: loadingDots 1.4s infinite ease-in-out both;
+  }
+
+  .loading-dots > div:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+
+  .loading-dots > div:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+
+  @keyframes loadingDots {
+    0%, 80%, 100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+
+  /* Focus states for accessibility */
+  .focus-ring:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :root {
+      --border: hsl(0, 0%, 0%);
+      --ring: hsl(0, 0%, 0%);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
